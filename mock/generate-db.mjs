@@ -41,7 +41,7 @@ startOfTodayUtc.setUTCHours(0, 0, 0, 0);
 
 const posts = Array.from({ length: 36 }, (_, i) => {
   const n = i + 1;
-  const dayOffset = Math.floor(i / 3) - 4; // -4 .. +7 days
+  const dayOffset = Math.floor(i / 3) - 1; // -1 .. +10 days
   const scheduledAt = new Date(
     startOfTodayUtc.getTime() +
       dayOffset * DAY +
@@ -49,13 +49,15 @@ const posts = Array.from({ length: 36 }, (_, i) => {
       (i % 4) * 15 * 60_000,
   );
   const past = scheduledAt.getTime() < now;
-  const status = past ? (i % 3 === 0 ? 'failed' : 'published') : 'scheduled';
+  const status = past ? (i % 2 === 0 ? 'failed' : 'published') : 'scheduled';
   const count = (i % 4) + 1;
   const platforms = Array.from({ length: count }, (_, k) => PLATFORMS[(i + k) % 4]);
   const post = {
     id: String(n),
     content: CONTENTS[i % CONTENTS.length],
     platforms,
+    // json-server cannot match inside arrays, so filtering by platform uses this helper string
+    platformsKey: `,${platforms.join(',')},`,
     scheduledAt: scheduledAt.toISOString(),
     status,
   };

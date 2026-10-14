@@ -1,5 +1,6 @@
 import type { InfiniteData } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
+import type { DateRange } from 'react-day-picker';
 import type { UseFormReturn } from 'react-hook-form';
 export type Platform = 'facebook' | 'instagram' | 'x' | 'tiktok';
 
@@ -9,6 +10,8 @@ export interface Post {
   id: string;
   content: string;
   platforms: Platform[];
+  /** Comma-delimited copy of `platforms` (e.g. `,x,facebook,`) so the mock API can filter by platform */
+  platformsKey?: string;
   mediaUrl?: string;
   /** ISO 8601 string in UTC */
   scheduledAt: string;
@@ -22,9 +25,14 @@ export type CreatePostInput = Pick<Post, 'content' | 'platforms' | 'scheduledAt'
 export type UpdatePostInput = Partial<Omit<Post, 'id'>>;
 
 export interface PostFilters {
-  platform?: Platform;
+  /** Posts on any of these platforms; empty or missing means all */
+  platforms?: Platform[];
   status?: PostStatus;
   search?: string;
+  /** Local calendar day, `yyyy-MM-dd` */
+  from?: string;
+  /** Local calendar day, `yyyy-MM-dd` */
+  to?: string;
 }
 
 export interface GetPostListParams {
@@ -155,4 +163,86 @@ export interface PostPreviewSheetProps {
   platforms: Platform[];
   content: string;
   mediaUrl?: string;
+}
+
+export interface PostStats {
+  total: number;
+  scheduled: number;
+  published: number;
+  failed: number;
+}
+
+export interface PostGroup {
+  key: string;
+  /** "Today", "Tomorrow", "Yesterday" or the formatted date */
+  label: string;
+  /** Only set when `label` is relative, e.g. "Oct 14, 2026" */
+  dateText?: string;
+  posts: Post[];
+}
+
+export interface DateRangeFilterProps {
+  value?: DateRange;
+  onChange: (range?: DateRange) => void;
+}
+
+export interface PostListFiltersProps {
+  search: string;
+  onSearchChange: (value: string) => void;
+  platforms: Platform[];
+  onPlatformsChange: (platforms: Platform[]) => void;
+  dateRange?: DateRange;
+  onDateRangeChange: (range?: DateRange) => void;
+}
+
+export interface PostStatsProps {
+  stats?: PostStats;
+  isLoading: boolean;
+  /** Currently selected status filter, or `all` */
+  activeStatus: string;
+  onStatusSelect: (status: string) => void;
+}
+
+export interface PostStatusBadgeProps {
+  status: PostStatus;
+}
+
+export interface PostListItemProps {
+  post: Post;
+  isSelected: boolean;
+  onSelect: (id: string) => void;
+}
+
+export interface PostDayGroupProps {
+  group: PostGroup;
+  selectedId?: string;
+  onSelect: (id: string) => void;
+}
+
+export interface PostListEmptyStateProps {
+  hasFilters: boolean;
+  onClearFilters: () => void;
+}
+
+export interface PostListErrorStateProps {
+  message: string;
+  onRetry: () => void;
+}
+
+export type ApiSimulationMode = 'data' | 'loading' | 'error' | 'empty';
+
+export interface ApiSimulationOption {
+  mode: ApiSimulationMode;
+  label: string;
+}
+
+export interface PlatformMultiSelectProps {
+  value: Platform[];
+  onChange: (platforms: Platform[]) => void;
+}
+
+export interface PostListPreviewSheetProps {
+  post?: Post;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
