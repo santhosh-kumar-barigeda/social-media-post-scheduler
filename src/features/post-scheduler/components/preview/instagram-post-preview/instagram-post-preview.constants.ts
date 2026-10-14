@@ -1,0 +1,1 @@
+export const CAPTION_PREVIEW_LENGTH = 125;
