@@ -2,7 +2,7 @@
 
 A frontend for composing, scheduling and managing social media posts across **X, Instagram, TikTok and Facebook** from a single dashboard.
 
-This is a frontend-only project: there are no real social integrations and no authentication. All data comes from a local mock API ([json-server](https://github.com/typicode/json-server)).
+This is a frontend-only project: there are no real social integrations and no authentication. The API is mocked in the browser with [MSW](https://mswjs.io), so the app needs no backend, no second terminal, and works offline.
 
 > Built for the "Social Media Post Scheduler" frontend assignment. The original brief is in [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md).
 
@@ -64,7 +64,7 @@ The UI was designed with the help of ChatGPT-generated mockups, kept in [designs
 | Forms        | React Hook Form + Zod 4                                                 |
 | Routing      | React Router 8                                                          |
 | HTTP         | axios                                                                   |
-| Mock API     | json-server 1 (beta)                                                    |
+| Mock API     | MSW (Mock Service Worker, runs in the browser)                          |
 | Dates        | date-fns                                                                |
 | UI utilities | sonner (toasts), lucide-react and react-icons (icons), react-day-picker |
 | Tooling      | ESLint, Prettier, `eslint-plugin-unused-imports`                        |
@@ -75,30 +75,21 @@ The UI was designed with the help of ChatGPT-generated mockups, kept in [designs
 
 ```bash
 npm install
-
-# 1. Generate mock data (dates are relative to today)
-npm run mock:seed
-
-# 2. Start the mock API on http://localhost:3001
-npm run mock
-
-# 3. In a second terminal, start the app
 npm run dev
 ```
 
 Open the URL Vite prints (usually http://localhost:5173). The home route redirects to the create-post screen.
 
-> Run `npm run mock:seed` whenever the dates feel stale (Today/Tomorrow groups are empty) and after pulling changes. It resets any posts you created.
+That's all. There is no backend to start. The mock API runs in your browser and starts with 36 sample posts around today's date. Your changes are kept in the browser's `localStorage`, so they survive a refresh, and the sample data is regenerated on the first visit of each day so Today and Tomorrow always have posts. To reset it, clear the site's `localStorage` (or use a private window). Sample images are bundled with the app, so it also works without an internet connection.
 
-### Configuration
+### Deploying (Vercel)
 
-The app works with no configuration. The only setting is the API address, and it is optional:
+The app is a static site, and the in-browser mock means there is nothing else to host:
 
-| Variable       | Default                 | Purpose             |
-| -------------- | ----------------------- | ------------------- |
-| `VITE_API_URL` | `http://localhost:3001` | Base URL of the API |
+1. Import the repository in Vercel. It detects Vite (build command `npm run build`, output directory `dist`).
+2. Deploy. No environment variables are needed.
 
-Set it only if the mock API runs on another port or host: copy [.env.example](.env.example) to `.env`, change the value, and restart `npm run dev` (Vite reads it at startup). `.env` is git-ignored.
+[vercel.json](vercel.json) rewrites every route to `index.html`, so refreshing a page such as `/posts` works. Data created on the live site is stored in each visitor's own browser.
 
 ## Scripts
 
@@ -107,8 +98,6 @@ Set it only if the mock API runs on another port or host: copy [.env.example](.e
 | `npm run dev`                     | Start the Vite dev server                                 |
 | `npm run build`                   | Type-check (`tsc -b`) and build for production            |
 | `npm run preview`                 | Serve the production build locally                        |
-| `npm run mock`                    | Run json-server on port 3001, watching `mock/db.json`     |
-| `npm run mock:seed`               | Regenerate `mock/db.json` with 36 posts around today      |
 | `npm run check`                   | Lint, type check and format check (run before committing) |
 | `npm run fix`                     | Auto-fix lint issues and format everything                |
 | `npm run lint:check` / `lint:fix` | ESLint only                                               |
@@ -118,8 +107,9 @@ Set it only if the mock API runs on another port or host: copy [.env.example](.e
 ## Key decisions and assumptions
 
 - **Filters live in the URL.** Search, platform, status and date range are query params, so they survive a refresh and can be shared. The date filter defaults to "from today" because a scheduler is mostly about what is coming up; choose "Any date" to see older posts.
-- **All filters are applied by the API.** json-server cannot search inside the `platforms` array, so each post also stores a `platformsKey` string that the platform filter matches against. This keeps page sizes and totals exact.
-- **Page-number paging with infinite scroll.** json-server supports page numbers. A production API would use cursor paging to avoid skipped or repeated posts when data changes between pages.
+- **The API is mocked in the browser (MSW).** The app runs with just `npm run dev`, works offline, and deploys as a static site with nothing to host. It is written against a normal REST contract ([docs/API_CONTRACT.md](docs/API_CONTRACT.md)), so a real backend could replace the mock.
+- **Filtering, search and paging are done by the API, not the UI.** The list asks the API for exactly the posts it needs, so page sizes and totals are exact.
+- **Page-number paging with infinite scroll.** A production API would use cursor paging to avoid skipped or repeated posts when data changes between pages.
 - **Past and published posts can't be edited or deleted.** The brief doesn't cover this. Failed posts are always in the past, so they can only be retried.
 - **One shared text box, strictest limit wins.** With several platforms selected, the post must fit the smallest selected limit (for example 280 with X selected). Per-platform text overrides were left out of scope.
 - **Retry is optimistic.** The row updates at once, the simulated call takes 1 second and fails 20% of the time, and a failure restores the previous state and shows an error toast. A retried post only goes back to Scheduled; there is no real publishing.
@@ -132,10 +122,11 @@ Set it only if the mock API runs on another port or host: copy [.env.example](.e
 src/
   app.tsx                         Routes
   features/post-scheduler/        Everything specific to scheduling posts
-    api/                          CRUD calls and the list query builder
+    api/                          CRUD, list and stats calls
     components/                   Grouped by area: common, editor, list, preview
     constants/                    Shared constants (platforms, status styles, query keys)
     hooks/                        React Query hooks (queries and mutations)
+    mocks/                        In-browser mock API (MSW handlers, seed data, storage)
     schemas/                      Zod schema for the post form
     screens/                      One folder per route (create, edit, list, home)
     types/                        Shared domain types
@@ -143,7 +134,7 @@ src/
   shared/                         Feature-independent code
     components/                   Layout, error state, dev tools, shadcn/ui
     hooks/ lib/ types/            Media-query hook, axios and query clients, API simulation
-mock/                             json-server data and the seed script
+public/                           Static files, including the mock service worker and sample images
 docs/                             Project documentation
 designs/                          UI mockups the screens were built from
 ```

@@ -8,8 +8,6 @@ export interface Post {
   id: string;
   content: string;
   platforms: Platform[];
-  /** Comma-delimited copy of `platforms` (e.g. `,x,facebook,`) so the mock API can filter by platform */
-  platformsKey?: string;
   mediaUrl?: string | null;
   /** ISO 8601 string in UTC */
   scheduledAt: string;
@@ -46,15 +44,14 @@ export interface PostListPage {
   total: number;
 }
 
-/** json-server v1 paginated response */
-export interface JsonServerPage<T> {
-  first: number;
-  prev: number | null;
-  next: number | null;
-  last: number;
-  pages: number;
-  items: number;
-  data: T[];
+/** Response of `GET /api/posts`, see docs/API_CONTRACT.md */
+export interface PostListResponse {
+  data: Post[];
+  page: number;
+  perPage: number;
+  total: number;
+  totalPages: number;
+  nextPage: number | null;
 }
 
 export type PostListData = InfiniteData<PostListPage, number>;
