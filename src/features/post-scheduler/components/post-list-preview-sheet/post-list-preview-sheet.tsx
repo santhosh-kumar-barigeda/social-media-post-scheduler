@@ -21,7 +21,7 @@ export function PostListPreviewSheet({ post, open, onOpenChange }: PostListPrevi
               tiktok={post.platforms.includes('tiktok')}
               facebook={post.platforms.includes('facebook')}
               content={post.content}
-              mediaUrl={post.mediaUrl}
+              mediaUrl={post.mediaUrl ?? undefined}
               className="h-full min-h-0"
             />
           </div>

@@ -1,6 +1,6 @@
 import { addHours, startOfHour } from 'date-fns';
 import { PLATFORM_OPTIONS } from '../constants/platforms';
-import type { Platform, PlatformLimitStatus, PostFormValues } from '../types/post';
+import type { Platform, PlatformLimitStatus, Post, PostFormValues } from '../types/post';
 
 export function getDefaultPostFormValues(): PostFormValues {
   return {
@@ -21,4 +21,13 @@ export function getLimitStatuses(content: string, platforms: Platform[]): Platfo
     isOver: count > limit,
     overBy: Math.max(0, count - limit),
   }));
+}
+
+export function postToFormValues(post: Post): PostFormValues {
+  return {
+    content: post.content,
+    mediaUrl: post.mediaUrl ?? '',
+    platforms: post.platforms,
+    scheduledAt: new Date(post.scheduledAt),
+  };
 }

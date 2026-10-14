@@ -3,9 +3,7 @@
     {
       "id": "1",
       "content": "Launching our new product line this week. Stay tuned!",
-      "platforms": [
-        "facebook"
-      ],
+      "platforms": ["facebook"],
       "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-13T08:00:00.000Z",
       "status": "failed",
@@ -15,10 +13,7 @@
     {
       "id": "2",
       "content": "Behind the scenes at the studio today.",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-13T13:15:00.000Z",
       "status": "published",
@@ -27,11 +22,7 @@
     {
       "id": "3",
       "content": "5 tips to grow your audience organically.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-13T18:30:00.000Z",
       "status": "failed",
@@ -40,35 +31,27 @@
     {
       "id": "4",
       "content": "Monday motivation: small steps every day add up.",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
-      "platformsKey": ",tiktok,facebook,instagram,x,",
+      "platforms": ["facebook", "instagram", "x"],
+      "platformsKey": ",facebook,instagram,x,",
       "scheduledAt": "2026-10-14T11:45:00.000Z",
       "status": "scheduled",
-      "mediaUrl": "https://picsum.photos/seed/post4/600/400"
+      "mediaUrl": "https://picsum.photos/seed/post4/600/400",
+      "errorMessage": null
     },
     {
       "id": "5",
       "content": "Customer story: how Acme doubled engagement in 30 days.",
-      "platforms": [
-        "facebook"
-      ],
-      "platformsKey": ",facebook,",
+      "platforms": ["facebook", "tiktok", "instagram", "x"],
+      "platformsKey": ",facebook,tiktok,instagram,x,",
       "scheduledAt": "2026-10-14T16:00:00.000Z",
       "status": "scheduled",
-      "mediaUrl": "https://picsum.photos/seed/post5/600/400"
+      "mediaUrl": "https://picsum.photos/seed/post5/600/400",
+      "errorMessage": null
     },
     {
       "id": "6",
       "content": "We're hiring! Check out open roles on our careers page.",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-14T09:15:00.000Z",
       "status": "published"
@@ -76,11 +59,7 @@
     {
       "id": "7",
       "content": "Weekend sale starts now. Up to 40% off everything.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-15T14:30:00.000Z",
       "status": "scheduled",
@@ -89,12 +68,7 @@
     {
       "id": "8",
       "content": "Quick poll: which feature should we build next?",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
+      "platforms": ["tiktok", "facebook", "instagram", "x"],
       "platformsKey": ",tiktok,facebook,instagram,x,",
       "scheduledAt": "2026-10-15T19:45:00.000Z",
       "status": "scheduled",
@@ -103,20 +77,17 @@
     {
       "id": "9",
       "content": "Throwback to our team offsite last summer.",
-      "platforms": [
-        "facebook"
-      ],
-      "platformsKey": ",facebook,",
+      "platforms": ["facebook", "instagram"],
+      "platformsKey": ",facebook,instagram,",
       "scheduledAt": "2026-10-15T12:00:00.000Z",
-      "status": "scheduled"
+      "status": "scheduled",
+      "mediaUrl": null,
+      "errorMessage": null
     },
     {
       "id": "10",
       "content": "New blog post: the future of social media scheduling.",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-16T17:15:00.000Z",
       "status": "scheduled",
@@ -125,11 +96,7 @@
     {
       "id": "11",
       "content": "Thank you for 10k followers! You are amazing.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-16T10:30:00.000Z",
       "status": "scheduled",
@@ -138,12 +105,7 @@
     {
       "id": "12",
       "content": "Join our live Q&A session tomorrow at 5pm.",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
+      "platforms": ["tiktok", "facebook", "instagram", "x"],
       "platformsKey": ",tiktok,facebook,instagram,x,",
       "scheduledAt": "2026-10-16T15:45:00.000Z",
       "status": "scheduled"
@@ -151,9 +113,7 @@
     {
       "id": "13",
       "content": "Product tip: schedule posts in bulk to save time.",
-      "platforms": [
-        "facebook"
-      ],
+      "platforms": ["facebook"],
       "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-17T08:00:00.000Z",
       "status": "scheduled",
@@ -162,10 +122,7 @@
     {
       "id": "14",
       "content": "Happy holidays from all of us!",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-17T13:15:00.000Z",
       "status": "scheduled",
@@ -174,11 +131,7 @@
     {
       "id": "15",
       "content": "Sneak peek of our upcoming redesign.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-17T18:30:00.000Z",
       "status": "scheduled"
@@ -186,12 +139,7 @@
     {
       "id": "16",
       "content": "Reminder: webinar starts in one hour.",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
+      "platforms": ["tiktok", "facebook", "instagram", "x"],
       "platformsKey": ",tiktok,facebook,instagram,x,",
       "scheduledAt": "2026-10-18T11:45:00.000Z",
       "status": "scheduled",
@@ -200,9 +148,7 @@
     {
       "id": "17",
       "content": "Meet the team: say hello to our newest designer.",
-      "platforms": [
-        "facebook"
-      ],
+      "platforms": ["facebook"],
       "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-18T16:00:00.000Z",
       "status": "scheduled",
@@ -211,10 +157,7 @@
     {
       "id": "18",
       "content": "Our top 3 learnings from this quarter.",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-18T09:15:00.000Z",
       "status": "scheduled"
@@ -222,11 +165,7 @@
     {
       "id": "19",
       "content": "Giveaway time! Follow and share to enter.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-19T14:30:00.000Z",
       "status": "scheduled",
@@ -235,12 +174,7 @@
     {
       "id": "20",
       "content": "Release notes: v2.4 is out with dark mode.",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
+      "platforms": ["tiktok", "facebook", "instagram", "x"],
       "platformsKey": ",tiktok,facebook,instagram,x,",
       "scheduledAt": "2026-10-19T19:45:00.000Z",
       "status": "scheduled",
@@ -249,9 +183,7 @@
     {
       "id": "21",
       "content": "Launching our new product line this week. Stay tuned!",
-      "platforms": [
-        "facebook"
-      ],
+      "platforms": ["facebook"],
       "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-19T12:00:00.000Z",
       "status": "scheduled"
@@ -259,10 +191,7 @@
     {
       "id": "22",
       "content": "Behind the scenes at the studio today.",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-20T17:15:00.000Z",
       "status": "scheduled",
@@ -271,11 +200,7 @@
     {
       "id": "23",
       "content": "5 tips to grow your audience organically.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-20T10:30:00.000Z",
       "status": "scheduled",
@@ -284,12 +209,7 @@
     {
       "id": "24",
       "content": "Monday motivation: small steps every day add up.",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
+      "platforms": ["tiktok", "facebook", "instagram", "x"],
       "platformsKey": ",tiktok,facebook,instagram,x,",
       "scheduledAt": "2026-10-20T15:45:00.000Z",
       "status": "scheduled"
@@ -297,9 +217,7 @@
     {
       "id": "25",
       "content": "Customer story: how Acme doubled engagement in 30 days.",
-      "platforms": [
-        "facebook"
-      ],
+      "platforms": ["facebook"],
       "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-21T08:00:00.000Z",
       "status": "scheduled",
@@ -308,10 +226,7 @@
     {
       "id": "26",
       "content": "We're hiring! Check out open roles on our careers page.",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-21T13:15:00.000Z",
       "status": "scheduled",
@@ -320,11 +235,7 @@
     {
       "id": "27",
       "content": "Weekend sale starts now. Up to 40% off everything.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-21T18:30:00.000Z",
       "status": "scheduled"
@@ -332,12 +243,7 @@
     {
       "id": "28",
       "content": "Quick poll: which feature should we build next?",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
+      "platforms": ["tiktok", "facebook", "instagram", "x"],
       "platformsKey": ",tiktok,facebook,instagram,x,",
       "scheduledAt": "2026-10-22T11:45:00.000Z",
       "status": "scheduled",
@@ -346,9 +252,7 @@
     {
       "id": "29",
       "content": "Throwback to our team offsite last summer.",
-      "platforms": [
-        "facebook"
-      ],
+      "platforms": ["facebook"],
       "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-22T16:00:00.000Z",
       "status": "scheduled",
@@ -357,10 +261,7 @@
     {
       "id": "30",
       "content": "New blog post: the future of social media scheduling.",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-22T09:15:00.000Z",
       "status": "scheduled"
@@ -368,11 +269,7 @@
     {
       "id": "31",
       "content": "Thank you for 10k followers! You are amazing.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-23T14:30:00.000Z",
       "status": "scheduled",
@@ -381,12 +278,7 @@
     {
       "id": "32",
       "content": "Join our live Q&A session tomorrow at 5pm.",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
+      "platforms": ["tiktok", "facebook", "instagram", "x"],
       "platformsKey": ",tiktok,facebook,instagram,x,",
       "scheduledAt": "2026-10-23T19:45:00.000Z",
       "status": "scheduled",
@@ -395,9 +287,7 @@
     {
       "id": "33",
       "content": "Product tip: schedule posts in bulk to save time.",
-      "platforms": [
-        "facebook"
-      ],
+      "platforms": ["facebook"],
       "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-23T12:00:00.000Z",
       "status": "scheduled"
@@ -405,10 +295,7 @@
     {
       "id": "34",
       "content": "Happy holidays from all of us!",
-      "platforms": [
-        "instagram",
-        "x"
-      ],
+      "platforms": ["instagram", "x"],
       "platformsKey": ",instagram,x,",
       "scheduledAt": "2026-10-24T17:15:00.000Z",
       "status": "scheduled",
@@ -417,11 +304,7 @@
     {
       "id": "35",
       "content": "Sneak peek of our upcoming redesign.",
-      "platforms": [
-        "x",
-        "tiktok",
-        "facebook"
-      ],
+      "platforms": ["x", "tiktok", "facebook"],
       "platformsKey": ",x,tiktok,facebook,",
       "scheduledAt": "2026-10-24T10:30:00.000Z",
       "status": "scheduled",
@@ -430,15 +313,11 @@
     {
       "id": "36",
       "content": "Reminder: webinar starts in one hour.",
-      "platforms": [
-        "tiktok",
-        "facebook",
-        "instagram",
-        "x"
-      ],
+      "platforms": ["tiktok", "facebook", "instagram", "x"],
       "platformsKey": ",tiktok,facebook,instagram,x,",
       "scheduledAt": "2026-10-24T15:45:00.000Z",
       "status": "scheduled"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

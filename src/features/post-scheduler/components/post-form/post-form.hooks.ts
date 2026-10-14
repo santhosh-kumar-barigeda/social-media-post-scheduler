@@ -1,8 +1,8 @@
 import { useWatch } from 'react-hook-form';
-import type { Platform, PostFormProps } from '../../types/post';
+import type { Platform, PostFormProps, PostFormValues } from '../../types/post';
 import { getDefaultPostFormValues, getLimitStatuses } from '../../utils/post-form';
 
-export function usePostForm(form: PostFormProps['form']) {
+export function usePostForm(form: PostFormProps['form'], resetValues?: PostFormValues) {
   const { control, reset, trigger, getFieldState } = form;
 
   const content = useWatch({ control, name: 'content' });
@@ -20,7 +20,7 @@ export function usePostForm(form: PostFormProps['form']) {
   }
 
   function handleReset() {
-    reset(getDefaultPostFormValues());
+    reset(resetValues ?? getDefaultPostFormValues());
   }
 
   return {

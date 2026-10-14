@@ -14,7 +14,7 @@ import {
 } from '@/shared/components/ui/alert-dialog';
 import { Button, buttonVariants } from '@/shared/components/ui/button';
 import type { PostListItemProps } from '../../types/post';
-import { formatPostTime } from '../../utils/post-list';
+import { formatPostTime, getPostLockReason } from '../../utils/post-list';
 import { PlatformIcon } from '../platform-icon';
 import { PostStatusBadge } from '../post-status-badge';
 import { usePostListItem } from './post-list-item.hooks';
@@ -22,6 +22,8 @@ import { usePostListItem } from './post-list-item.hooks';
 export function PostListItem({ post, isSelected, onSelect }: PostListItemProps) {
   const { isRetrying, isDeleting, isDeleteOpen, setIsDeleteOpen, handleRetry, handleDelete } =
     usePostListItem(post.id);
+
+  const canModify = !getPostLockReason(post);
 
   return (
     <li
@@ -82,42 +84,50 @@ export function PostListItem({ post, isSelected, onSelect }: PostListItemProps) 
             {isRetrying ? 'Retrying...' : 'Retry'}
           </Button>
         )}
-        <Link
-          to={`/posts/${post.id}/edit`}
-          aria-label="Edit post"
-          className={buttonVariants({ variant: 'ghost', size: 'icon' })}
-        >
-          <Pencil />
-        </Link>
-        <AlertDialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
-          <AlertDialogTrigger
-            render={
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                aria-label="Delete post"
-                className="text-destructive hover:text-destructive"
-              />
-            }
-          >
-            <Trash2 />
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete this post?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This post will be permanently removed from your queue.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction variant="destructive" onClick={handleDelete} disabled={isDeleting}>
-                {isDeleting ? 'Deleting...' : 'Delete'}
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        {canModify && (
+          <>
+            <Link
+              to={`/posts/${post.id}/edit`}
+              aria-label="Edit post"
+              className={buttonVariants({ variant: 'ghost', size: 'icon' })}
+            >
+              <Pencil />
+            </Link>
+            <AlertDialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+              <AlertDialogTrigger
+                render={
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    aria-label="Delete post"
+                    className="text-destructive hover:text-destructive"
+                  />
+                }
+              >
+                <Trash2 />
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete this post?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This post will be permanently removed from your queue.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    variant="destructive"
+                    onClick={handleDelete}
+                    disabled={isDeleting}
+                  >
+                    {isDeleting ? 'Deleting...' : 'Delete'}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </>
+        )}
       </div>
     </li>
   );

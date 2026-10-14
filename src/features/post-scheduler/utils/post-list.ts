@@ -1,7 +1,7 @@
 import { format, isToday, isTomorrow, isValid, isYesterday, parseISO } from 'date-fns';
 import { PLATFORM_OPTIONS } from '../constants/platforms';
 import { POST_STATUSES } from '../constants/post-list';
-import type { Platform, Post, PostGroup, PostStatus } from '../types/post';
+import type { Platform, Post, PostGroup, PostLockReason, PostStatus } from '../types/post';
 
 const DAY_KEY_FORMAT = 'yyyy-MM-dd';
 const DATE_FORMAT = 'MMM d, yyyy';
@@ -67,4 +67,10 @@ export function formatDateParam(date: Date): string {
 /** Delimited so `,x,` can match one platform without matching part of another. */
 export function toPlatformsKey(platforms: Platform[]): string {
   return `,${platforms.join(',')},`;
+}
+
+/** Published posts and posts whose scheduled time has passed can no longer be edited or deleted. */
+export function getPostLockReason(post: Post): PostLockReason | undefined {
+  if (post.status === 'published') return 'published';
+  if (new Date(post.scheduledAt).getTime() <= Date.now()) return 'past';
 }

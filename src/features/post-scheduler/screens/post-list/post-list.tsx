@@ -118,7 +118,7 @@ export function PostList() {
               tiktok={selectedPost.platforms.includes('tiktok')}
               facebook={selectedPost.platforms.includes('facebook')}
               content={selectedPost.content}
-              mediaUrl={selectedPost.mediaUrl}
+              mediaUrl={selectedPost.mediaUrl ?? undefined}
             />
           ) : (
             <p className="text-sm text-muted-foreground">Select a post to see its preview.</p>

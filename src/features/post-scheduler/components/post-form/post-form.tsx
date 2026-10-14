@@ -21,7 +21,14 @@ import { usePostForm } from './post-form.hooks';
 const SECTION_TITLE = 'text-base font-semibold data-[variant=label]:text-base';
 const LEGEND_CLASS = `mb-2 ${SECTION_TITLE}`;
 
-export function PostForm({ form, onSubmit, isSubmitting }: PostFormProps) {
+export function PostForm({
+  form,
+  onSubmit,
+  isSubmitting,
+  submitLabel = 'Schedule Post',
+  submittingLabel = 'Scheduling...',
+  resetValues,
+}: PostFormProps) {
   const { control, handleSubmit } = form;
   const {
     content,
@@ -31,7 +38,7 @@ export function PostForm({ form, onSubmit, isSubmitting }: PostFormProps) {
     hasOverLimit,
     handlePlatformsChange,
     handleReset,
-  } = usePostForm(form);
+  } = usePostForm(form, resetValues);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -130,7 +137,7 @@ export function PostForm({ form, onSubmit, isSubmitting }: PostFormProps) {
           <div className="flex flex-col items-stretch gap-1 sm:items-end">
             <Button type="submit" disabled={hasOverLimit || isSubmitting} className="h-11 px-6">
               <CalendarCheck className="size-4" />
-              {isSubmitting ? 'Scheduling...' : 'Schedule Post'}
+              {isSubmitting ? submittingLabel : submitLabel}
             </Button>
             {hasOverLimit && (
               <p className="text-sm text-destructive">

@@ -12,7 +12,7 @@ export interface Post {
   platforms: Platform[];
   /** Comma-delimited copy of `platforms` (e.g. `,x,facebook,`) so the mock API can filter by platform */
   platformsKey?: string;
-  mediaUrl?: string;
+  mediaUrl?: string | null;
   /** ISO 8601 string in UTC */
   scheduledAt: string;
   status: PostStatus;
@@ -139,6 +139,10 @@ export interface PostFormProps {
   form: UseFormReturn<PostFormValues>;
   onSubmit: (values: PostFormValues) => void;
   isSubmitting?: boolean;
+  submitLabel?: string;
+  submittingLabel?: string;
+  /** What Reset restores; defaults to an empty form */
+  resetValues?: PostFormValues;
 }
 
 export interface QuickFillContentOption {
@@ -245,4 +249,26 @@ export interface PostListPreviewSheetProps {
   post?: Post;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+}
+
+export interface PostEditorProps extends PostFormProps {
+  title: string;
+  description: string;
+  /** Rendered under the form card, e.g. dev tools */
+  footer?: ReactNode;
+}
+
+export interface PostEditFormProps {
+  post: Post;
+}
+
+export interface PostEditErrorStateProps {
+  message: string;
+  onRetry: () => void;
+}
+
+export type PostLockReason = 'published' | 'past';
+
+export interface PostEditLockedStateProps {
+  reason: PostLockReason;
 }

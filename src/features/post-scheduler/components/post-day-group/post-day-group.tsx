@@ -15,7 +15,10 @@ export function PostDayGroup({ group, selectedId, onSelect }: PostDayGroupProps)
         type="button"
         onClick={toggle}
         aria-expanded={isOpen}
-        className="flex w-full items-center gap-3 border-b bg-muted/30 px-4 py-3 text-left outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+        className={cn(
+          'flex w-full items-center gap-3 bg-muted/30 px-4 py-3 text-left outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
+          isOpen && 'border-b',
+        )}
       >
         <CalendarDays className="size-4 text-muted-foreground" aria-hidden />
         <h2 className="font-semibold">{group.label}</h2>
