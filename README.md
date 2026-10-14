@@ -33,15 +33,17 @@ This is a frontend-only project: there are no real social integrations and no au
 
 **[Watch the demo (about 90 seconds)](docs/recordings/demo.mp4)**: creating a post, filtering the queue, retrying a failed post. It was recorded in development mode, so the orange "Quick test fill" panel is the dev-only helper described below.
 
-**Post queue**: status cards, filters, posts grouped by day and the live preview of the selected post.
+**Create post**: the empty composer.
 
-![Post queue](docs/screenshots/scheduled-posts.png)
+![Create post, empty](docs/screenshots/create-post-unfilled.png)
 
-**Create post**: live character counts per platform and platform-style previews.
+**Create post with content**: live character counts per platform and platform-style previews.
 
 ![Create post with content](docs/screenshots/create-post-filled.png)
 
-![Create post, empty](docs/screenshots/create-post-unfilled.png)
+**Post queue**: status cards, filters, posts grouped by day and the live preview of the selected post.
+
+![Post queue](docs/screenshots/scheduled-posts.png)
 
 ## Design
 
