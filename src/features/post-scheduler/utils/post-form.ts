@@ -1,6 +1,7 @@
 import { addHours, startOfHour } from 'date-fns';
 import { PLATFORM_OPTIONS } from '../constants/platforms';
-import type { Platform, PlatformLimitStatus, Post, PostFormValues } from '../types/post';
+import type { PostFormValues } from '../types/form';
+import type { Platform, PlatformLimitStatus, Post } from '../types/post';
 
 export function getDefaultPostFormValues(): PostFormValues {
   return {

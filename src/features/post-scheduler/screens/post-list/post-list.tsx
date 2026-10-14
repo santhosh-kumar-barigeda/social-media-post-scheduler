@@ -1,14 +1,15 @@
 import { Button } from '@/shared/components/ui/button';
+import { ErrorState } from '@/shared/components/feedback/error-state';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
-import { ApiSimulationPanel } from '../../components/api-simulation-panel';
-import { PostDayGroup } from '../../components/post-day-group';
-import { PostListEmptyState } from '../../components/post-list-empty-state';
-import { PostListErrorState } from '../../components/post-list-error-state';
-import { PostListFilters } from '../../components/post-list-filters';
-import { PostListPreviewSheet } from '../../components/post-list-preview-sheet';
-import { PostListSkeleton } from '../../components/post-list-skeleton';
-import { PostStats } from '../../components/post-stats';
-import { SocialMediaPostPreview } from '../../components/social-media-post-preview';
+import { ApiSimulationPanel } from '@/shared/components/dev/api-simulation-panel';
+import { postKeys } from '../../constants/query-keys';
+import { PostDayGroup } from '../../components/list/post-day-group';
+import { PostListEmptyState } from '../../components/list/post-list-empty-state';
+import { PostListFilters } from '../../components/list/post-list-filters';
+import { PostPreviewSheet } from '../../components/editor/post-preview-sheet';
+import { PostListSkeleton } from '../../components/list/post-list-skeleton';
+import { PostStats } from '../../components/list/post-stats';
+import { SocialMediaPostPreview } from '../../components/preview/social-media-post-preview';
 import { usePostList } from './post-list.hooks';
 
 export function PostList() {
@@ -45,8 +46,15 @@ export function PostList() {
 
   function renderQueue() {
     if (isLoading) return <PostListSkeleton />;
-    if (isError)
-      return <PostListErrorState message={errorMessage} onRetry={() => void refetch()} />;
+    if (isError) {
+      return (
+        <ErrorState title="Couldn't load your posts" description={errorMessage}>
+          <Button type="button" variant="outline" onClick={() => void refetch()}>
+            Try again
+          </Button>
+        </ErrorState>
+      );
+    }
     if (posts.length === 0 && !hasNextPage) {
       return <PostListEmptyState hasFilters={hasFilters} onClearFilters={handleClearFilters} />;
     }
@@ -80,7 +88,7 @@ export function PostList() {
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
       <div className="flex min-w-0 flex-col gap-6">
-        {import.meta.env.DEV && <ApiSimulationPanel />}
+        {import.meta.env.DEV && <ApiSimulationPanel resetQueryKey={postKeys.all} />}
         <header className="flex flex-col gap-4">
           <div>
             <h1 className="text-3xl font-bold">Scheduled Posts</h1>
@@ -125,10 +133,12 @@ export function PostList() {
           )}
         </CardContent>
       </Card>
-      <PostListPreviewSheet
-        post={selectedPost}
+      <PostPreviewSheet
         open={isPreviewSheetOpen}
         onOpenChange={setIsPreviewSheetOpen}
+        platforms={selectedPost?.platforms ?? []}
+        content={selectedPost?.content ?? ''}
+        mediaUrl={selectedPost?.mediaUrl ?? undefined}
       />
     </div>
   );

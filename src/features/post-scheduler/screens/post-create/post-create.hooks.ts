@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useCreatePost } from '../../hooks';
 import { postFormSchema } from '../../schemas/post-form';
-import type { PostFormValues } from '../../types/post';
+import type { PostFormValues } from '../../types/form';
 import { getDefaultPostFormValues } from '../../utils/post-form';
 
 export function usePostCreate() {

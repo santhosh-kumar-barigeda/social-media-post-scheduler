@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
-    "type:check": "tsc --noEmit",
+    "type:check": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run lint:check && npm run type:check && npm run format:check",

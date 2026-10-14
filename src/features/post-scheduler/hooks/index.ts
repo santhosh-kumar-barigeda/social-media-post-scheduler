@@ -12,7 +12,7 @@ import {
 } from '../api';
 import { postKeys } from '../constants/query-keys';
 import type { PostFilters, PostListData, UpdatePostVariables } from '../types/post';
-import { shouldRetryQuery } from '../utils/api-simulation';
+import { shouldRetryQuery } from '@/shared/lib/api-simulation';
 
 export function useGetInfinitePostList(filters: PostFilters = {}) {
   return useInfiniteQuery({

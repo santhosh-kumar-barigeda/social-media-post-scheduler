@@ -1,5 +1,5 @@
-import { PostEditor } from '../../components/post-editor';
-import { QuickFillPanel } from '../../components/quick-fill-panel';
+import { PostEditor } from '../../components/editor/post-editor';
+import { QuickFillPanel } from '../../components/editor/quick-fill-panel';
 import { usePostCreate } from './post-create.hooks';
 
 export function PostCreate() {

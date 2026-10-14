@@ -8,15 +8,12 @@ import { useGetInfinitePostList, useGetPostStats } from '../../hooks';
 import type { Platform, PostFilters } from '../../types/post';
 import {
   formatDateParam,
-  groupPostsByDay,
   parseDateParam,
   parsePlatformParams,
   parseStatusParam,
-} from '../../utils/post-list';
-
-const LOAD_MORE_MARGIN = '300px';
-// Matches the `xl` breakpoint where the side preview card becomes visible.
-const WIDE_SCREEN_QUERY = '(min-width: 1280px)';
+} from '../../utils/filter-params';
+import { groupPostsByDay } from '../../utils/post-grouping';
+import { LOAD_MORE_MARGIN, WIDE_SCREEN_QUERY } from './post-list.constants';
 
 export function usePostList() {
   const [searchParams, setSearchParams] = useSearchParams();

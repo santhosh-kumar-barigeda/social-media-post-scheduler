@@ -11,10 +11,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/shared/components/ui/sidebar';
-
-const MENU_BUTTON_CLASS = 'h-11 gap-3 px-3';
-const CREATE_PATH = '/posts/create';
-const LIST_PATH = '/posts';
+import { MENU_BUTTON_CLASS, CREATE_PATH, LIST_PATH } from './app-layout.constants';
 
 export function AppLayout() {
   const { pathname } = useLocation();
