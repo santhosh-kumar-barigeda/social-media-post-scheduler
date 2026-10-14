@@ -8,9 +8,9 @@
       ],
       "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-13T08:00:00.000Z",
-      "status": "scheduled",
+      "status": "failed",
       "mediaUrl": "https://picsum.photos/seed/post1/600/400",
-      "errorMessage": null
+      "errorMessage": "Rate limit exceeded. Please try again later."
     },
     {
       "id": "2",
@@ -38,33 +38,15 @@
       "errorMessage": null
     },
     {
-      "id": "4",
-      "content": "Edited content for test",
-      "platforms": [
-        "facebook",
-        "instagram",
-        "x"
-      ],
-      "platformsKey": ",facebook,instagram,x,",
-      "scheduledAt": "2026-10-14T11:45:00.000Z",
-      "status": "scheduled",
-      "mediaUrl": null,
-      "errorMessage": null
-    },
-    {
       "id": "5",
       "content": "Customer story: how Acme doubled engagement in 30 days.",
       "platforms": [
-        "facebook",
-        "tiktok",
-        "instagram",
-        "x"
+        "facebook"
       ],
-      "platformsKey": ",facebook,tiktok,instagram,x,",
+      "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-14T16:00:00.000Z",
       "status": "scheduled",
-      "mediaUrl": "https://picsum.photos/seed/post5/600/400",
-      "errorMessage": null
+      "mediaUrl": "https://picsum.photos/seed/post5/600/400"
     },
     {
       "id": "6",
@@ -108,14 +90,11 @@
       "id": "9",
       "content": "Throwback to our team offsite last summer.",
       "platforms": [
-        "facebook",
-        "instagram"
+        "facebook"
       ],
-      "platformsKey": ",facebook,instagram,",
+      "platformsKey": ",facebook,",
       "scheduledAt": "2026-10-15T12:00:00.000Z",
-      "status": "scheduled",
-      "mediaUrl": null,
-      "errorMessage": null
+      "status": "scheduled"
     },
     {
       "id": "10",
@@ -448,17 +427,19 @@
       "status": "scheduled"
     },
     {
-      "content": "🌟 Believe in yourself and keep moving forward! 💪✨ Life won't always be easy, but every challenge teaches you something valuable. 🌱 Don't compare your journey with others. Focus on your growth, protect your peace, and celebrate every small victory. ❤️🚀\n\nRemember, success takes patience, consistency, and courage. 🌈 Keep learning, stay positive, and never stop dreaming. Your future is shaped by the choices you make today! 🔥💯\n\n💬 What's your biggest goal right now? Share below! 👇😊\n\n#Motivation #Growth #Success 🌻",
+      "content": "🌟 Believe in yourself and keep moving forward! 💪✨ Life won't always be easy, but every challenge teaches you something valuable. 🌱 Don't compare your journey with others. Focus on your growth, protect your peace, and celebrate every small victory. ❤️🚀",
       "platforms": [
         "instagram",
         "tiktok",
-        "facebook"
+        "facebook",
+        "x"
       ],
       "mediaUrl": "https://images.pexels.com/photos/14774085/pexels-photo-14774085.jpeg",
-      "scheduledAt": "2026-10-14T10:30:00.000Z",
-      "platformsKey": ",instagram,tiktok,facebook,",
+      "scheduledAt": "2026-10-14T15:30:00.000Z",
+      "platformsKey": ",instagram,tiktok,facebook,x,",
       "status": "scheduled",
-      "id": "MuKFB8aVc4E"
+      "id": "FS0h-FJBn2g",
+      "errorMessage": null
     },
     {
       "content": "🌟 Believe in yourself and keep moving forward! 💪✨ Life won't always be easy, but every challenge teaches you something valuable. 🌱 Don't compare your journey with others. Focus on your growth, protect your peace, and celebrate every small victory. ❤️🚀\n\nRemember, success takes patience, consistency, and courage. 🌈 Keep learning, stay positive, and never stop dreaming. Your future is shaped by the choices you make today! 🔥💯\n\n💬 What's your biggest goal right now? Share below! 👇😊\n\n#Motivation #Growth #Success 🌻",
@@ -468,10 +449,10 @@
         "facebook"
       ],
       "mediaUrl": "https://images.pexels.com/photos/14774085/pexels-photo-14774085.jpeg",
-      "scheduledAt": "2026-10-14T10:30:00.000Z",
+      "scheduledAt": "2026-10-14T15:30:00.000Z",
       "platformsKey": ",instagram,tiktok,facebook,",
       "status": "scheduled",
-      "id": "jR9Vf8JDdrs"
+      "id": "tyRqBjuO8Ss"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
