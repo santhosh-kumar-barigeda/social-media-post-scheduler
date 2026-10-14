@@ -31,7 +31,11 @@ This is a frontend-only project: there are no real social integrations and no au
 
 ## Screenshots and demo
 
-**[Watch the demo (about 90 seconds)](docs/recordings/demo.mp4)**: creating a post, filtering the queue, retrying a failed post. It was recorded in development mode, so the orange "Quick test fill" panel is the dev-only helper described below.
+A walkthrough of creating a post, filtering the queue and retrying a failed post (about 90 seconds). It was recorded in development mode, so the orange "Quick test fill" panel is the dev-only helper described below.
+
+![Demo](docs/recordings/demo.gif)
+
+Prefer a sharper version? Download the [full-quality video](docs/recordings/demo.mp4).
 
 **Create post**: the empty composer.
 
