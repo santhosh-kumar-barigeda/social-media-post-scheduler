@@ -1,9 +1,10 @@
 import { Button } from '@/shared/components/ui/button';
+import { Providers } from '@/shared/components/providers';
 
 export default function App() {
   return (
-    <div>
+    <Providers>
       <Button>Click me</Button>
-    </div>
+    </Providers>
   );
 }
