@@ -1,14 +1,12 @@
-import { apiClient } from '@/shared/lib/api-client';
-import { buildPostListWhere } from './build-post-list-where';
+import { endOfDay, parseISO, startOfDay } from 'date-fns';
 import { applyApiSimulation } from '@/shared/lib/api-simulation';
-import { toPlatformsKey } from '../utils/post-rules';
-import { POST_STATUSES } from '../constants/post-list';
+import { apiClient } from '@/shared/lib/api-client';
 import type {
   CreatePostInput,
   GetPostListParams,
-  JsonServerPage,
   Post,
   PostListPage,
+  PostListResponse,
   PostStats,
   UpdatePostInput,
 } from '../types/post';
@@ -22,16 +20,26 @@ export async function getPostList({
 }: GetPostListParams = {}): Promise<PostListPage> {
   if ((await applyApiSimulation()) === 'empty') return { posts: [], nextPage: null, total: 0 };
 
-  const { data } = await apiClient.get<JsonServerPage<Post>>('/posts', {
-    params: {
-      _page: page,
-      _per_page: perPage,
-      _sort: 'scheduledAt',
-      _where: JSON.stringify(buildPostListWhere(filters)),
-    },
-  });
+  const { platforms, status, search, from, to } = filters;
+  const params = new URLSearchParams({ page: String(page), perPage: String(perPage) });
+  if (status) params.set('status', status);
+  if (search) params.set('q', search);
+  platforms?.forEach((platform) => params.append('platform', platform));
+  // The UI works with local calendar days; the API takes UTC instants.
+  if (from) params.set('from', startOfDay(parseISO(from)).toISOString());
+  if (to) params.set('to', endOfDay(parseISO(to)).toISOString());
 
-  return { posts: data.data, nextPage: data.next, total: data.items };
+  const { data } = await apiClient.get<PostListResponse>('/posts', { params });
+  return { posts: data.data, nextPage: data.nextPage, total: data.total };
+}
+
+export async function getPostStats(): Promise<PostStats> {
+  if ((await applyApiSimulation()) === 'empty') {
+    return { total: 0, scheduled: 0, published: 0, failed: 0 };
+  }
+
+  const { data } = await apiClient.get<PostStats>('/posts/stats');
+  return data;
 }
 
 export async function getPost(id: string): Promise<Post> {
@@ -40,20 +48,13 @@ export async function getPost(id: string): Promise<Post> {
 }
 
 export async function createPost(input: CreatePostInput): Promise<Post> {
-  const post: Omit<Post, 'id'> = {
-    ...input,
-    platformsKey: toPlatformsKey(input.platforms),
-    status: 'scheduled',
-  };
+  const post: Omit<Post, 'id'> = { ...input, status: 'scheduled' };
   const { data } = await apiClient.post<Post>('/posts', post);
   return data;
 }
 
 export async function updatePost(id: string, input: UpdatePostInput): Promise<Post> {
-  const { data } = await apiClient.patch<Post>(`/posts/${id}`, {
-    ...input,
-    ...(input.platforms && { platformsKey: toPlatformsKey(input.platforms) }),
-  });
+  const { data } = await apiClient.patch<Post>(`/posts/${id}`, input);
   return data;
 }
 
@@ -73,22 +74,4 @@ export async function retryPost(id: string): Promise<Post> {
   }
 
   return updatePost(id, { status: 'scheduled', errorMessage: null });
-}
-
-/** Counts per status, read from json-server's `items` total on a one-item page. */
-export async function getPostStats(): Promise<PostStats> {
-  if ((await applyApiSimulation()) === 'empty') {
-    return { total: 0, scheduled: 0, published: 0, failed: 0 };
-  }
-
-  const [scheduled, published, failed] = await Promise.all(
-    POST_STATUSES.map(async (status) => {
-      const { data } = await apiClient.get<JsonServerPage<Post>>('/posts', {
-        params: { status, _page: 1, _per_page: 1 },
-      });
-      return data.items;
-    }),
-  );
-
-  return { total: scheduled + published + failed, scheduled, published, failed };
 }

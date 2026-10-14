@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local environment files (copy .env.example to .env to override defaults)
+.env
+.env.local
+.env.*.local
+
+# Raw screen recordings are large; only the compressed demo.mp4 is kept in the repo
+docs/recordings/*.mov

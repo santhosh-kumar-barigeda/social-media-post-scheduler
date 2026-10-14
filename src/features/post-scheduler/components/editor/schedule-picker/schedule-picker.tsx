@@ -8,7 +8,10 @@ import { useSchedulePicker } from './schedule-picker.hooks';
 import type { SchedulePickerProps } from './schedule-picker.types';
 
 export function SchedulePicker({ value, onChange, error }: SchedulePickerProps) {
-  const { handleDateSelect, handleTimeChange } = useSchedulePicker({ value, onChange });
+  const { timeValue, handleDateSelect, handleTimeChange, handleTimeBlur } = useSchedulePicker({
+    value,
+    onChange,
+  });
 
   return (
     <div>
@@ -45,8 +48,9 @@ export function SchedulePicker({ value, onChange, error }: SchedulePickerProps) 
             <Input
               type="time"
               aria-label="Time"
-              value={value ? format(value, 'HH:mm') : ''}
+              value={timeValue}
               onChange={(event) => handleTimeChange(event.target.value)}
+              onBlur={handleTimeBlur}
             />
           </div>
         </PopoverContent>
