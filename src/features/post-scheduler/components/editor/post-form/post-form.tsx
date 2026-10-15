@@ -1,5 +1,6 @@
 import { CalendarCheck, Link2, RotateCcw } from 'lucide-react';
 import { Controller } from 'react-hook-form';
+import { cn } from 'cn';
 import { Button } from '@/shared/components/ui/button';
 import {
   Field,
@@ -47,6 +48,10 @@ export function PostForm({
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor={field.name} className={SECTION_TITLE}>
                 Post content
+                <span aria-hidden="true" className="text-destructive">
+                  {' '}
+                  *
+                </span>
               </FieldLabel>
               <Textarea
                 {...field}
@@ -65,8 +70,15 @@ export function PostForm({
           control={control}
           render={({ field, fieldState }) => (
             <FieldSet className="gap-2">
-              <FieldLegend variant="label" className={LEGEND_CLASS}>
+              <FieldLegend
+                variant="label"
+                className={cn(LEGEND_CLASS, fieldState.invalid && 'text-destructive')}
+              >
                 Select platforms
+                <span aria-hidden="true" className="text-destructive">
+                  {' '}
+                  *
+                </span>
               </FieldLegend>
               <PlatformSelector
                 value={field.value}
@@ -109,8 +121,15 @@ export function PostForm({
             control={control}
             render={({ field, fieldState }) => (
               <FieldSet className="gap-2">
-                <FieldLegend variant="label" className={LEGEND_CLASS}>
+                <FieldLegend
+                  variant="label"
+                  className={cn(LEGEND_CLASS, fieldState.invalid && 'text-destructive')}
+                >
                   Schedule time
+                  <span aria-hidden="true" className="text-destructive">
+                    {' '}
+                    *
+                  </span>
                 </FieldLegend>
                 <SchedulePicker
                   value={field.value}
